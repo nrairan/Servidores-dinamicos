@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel - Servidores dinámicos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="encabezado">
+    <div class="contenedor encabezado__interior">
+      <div>
+        <h1>Panel de administración de servidores dinámicos</h1>
+        <p class="encabezado__descripcion">
+          Elaborado por:
+          Rairan Neider;
+          Ruiz Andres
+        </p>
+      </div>
+      <div class="conexion" id="conexion" role="status" aria-live="polite">
+        <span class="led led--gris" id="conexion-led"></span>
+        <span id="conexion-texto">Conectando con la API…</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="contenedor">
+
+    <!-- Resumen -->
+    <section class="resumen" aria-labelledby="titulo-resumen">
+      <h2 id="titulo-resumen" class="visualmente-oculto">Resumen del sistema</h2>
+
+      <article class="tarjeta tarjeta--dato">
+        <p class="dato__etiqueta">Solicitudes atendidas</p>
+        <p class="dato__valor" id="total-solicitudes">—</p>
+        <p class="dato__detalle">en total desde que se inició el balanceador</p>
+      </article>
+
+      <article class="tarjeta tarjeta--dato">
+        <p class="dato__etiqueta">Servidores configurados</p>
+        <p class="dato__valor" id="total-servidores">—</p>
+        <p class="dato__detalle" id="detalle-servidores">esperando respuesta de la API</p>
+      </article>
+    </section>
+
+    <div class="rejilla">
+
+      <!-- Listado de servidores -->
+      <section class="tarjeta" aria-labelledby="titulo-servidores">
+        <div class="tarjeta__cabecera">
+          <h2 id="titulo-servidores">Servidores</h2>
+          <div class="acciones">
+            <label class="auto">
+              <input type="checkbox" id="auto-actualizar">
+              Actualizar cada 5 s
+            </label>
+            <button type="button" class="boton boton--secundario" id="btn-actualizar">
+              Actualizar servidores
+            </button>
+          </div>
+        </div>
+
+        <div class="tabla-envoltorio">
+          <table class="tabla">
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Puerto</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-servidores">
+              <tr><td colspan="3" class="vacio">Todavía no se han consultado los servidores.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Solicitudes -->
+      <section class="tarjeta" aria-labelledby="titulo-solicitudes">
+        <div class="tarjeta__cabecera">
+          <h2 id="titulo-solicitudes">Gestión de solicitudes</h2>
+        </div>
+
+        <p class="texto-ayuda">
+          Cada clic envía una solicitud al balanceador, que la entrega al siguiente servidor activo.
+        </p>
+        <button type="button" class="boton boton--principal" id="btn-solicitud">Enviar solicitud</button>
+
+        <div class="resultado" id="resultado" aria-live="polite">
+          <p class="vacio">Aún no se ha enviado ninguna solicitud.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- Estadísticas -->
+    <section class="tarjeta" aria-labelledby="titulo-estadisticas">
+      <div class="tarjeta__cabecera">
+        <h2 id="titulo-estadisticas">Estadísticas por servidor</h2>
+        <button type="button" class="boton boton--secundario" id="btn-estadisticas">
+          Actualizar estadísticas
+        </button>
+      </div>
+      <div id="estadisticas" class="estadisticas">
+        <p class="vacio">Sin datos de estadísticas todavía.</p>
+      </div>
+    </section>
+
+    <!-- Mensajes del sistema -->
+    <section class="tarjeta" aria-labelledby="titulo-mensajes">
+      <div class="tarjeta__cabecera">
+        <h2 id="titulo-mensajes">Mensajes del sistema</h2>
+        <button type="button" class="boton boton--secundario" id="btn-limpiar">Limpiar mensajes</button>
+      </div>
+      <ul class="mensajes" id="mensajes" aria-live="polite"></ul>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      Universidad de Cundinamarca, Programa de Ingeniería de Sistemas y Computación. CADI Redes y Comunicación.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
